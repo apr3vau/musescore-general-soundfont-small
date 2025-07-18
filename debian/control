@@ -1,15 +1,60 @@
-Source: template-repository
-Section: unknown
+Source: musescore-general-soundfont-small
+Section: sound
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Thorsten Glaser <tg@mirbsd.de>
+Homepage: https://musescore.org/en/node/269869
+Build-Depends: debhelper-compat (= 13),
+ python3-minimal, sf3convert
+Standards-Version: 4.6.0
+Rules-Requires-Root: no
+VCS-git: https://evolvis.org/anonscm/git/alioth/soundfonts.git -b musescore-general-soundfont-small
+VCS-Browser: https://evolvis.org/plugins/scmgit/cgi-bin/gitweb.cgi?p=alioth/soundfonts.git;a=shortlog;h=refs/heads/musescore-general-soundfont-small
 
-Package: template-repository
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Package: musescore-general-soundfont-small
+Architecture: all
+Multi-Arch: foreign
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}
+Conflicts: musescore-common (<< 2.3.2+dfsg1-1~bpo9),
+ fluidr3mono-gm-soundfont (<< 2.315-5~),
+ musescore-general-soundfont (<< 0.1.3-1~)
+Provides: musescore-compatible-soundfont, musescore-general-soundfont,
+ sf3-soundfont-gm
+Enhances: libfluidsynth1 (>= 1.1.7), libfluidsynth2, musescore (>= 2.2),
+ musescore3
+Description: General SoundFont from MuseScore (lossy)
+ This is the new standard hard disc space-saving SF3 format
+ soundfont as shipped with MuseScore 2.2 and newer.
+ .
+ This release of the soundfont supports Single-Note Dynamics with
+ MuseScore 3.2 and higher.
+ .
+ MuseScore_General attempts to keep the installed-size footprint
+ low while providing the complete GM (General MIDI) sound set
+ and some extras; were it not for the new pianos, it would even
+ be smaller than its antecessor fluidr3mono-gm-soundfont despite
+ restoring stereo samples for some instruments and the new focus
+ on quality, thanks to numerous optimisations and bugfixes.
+ .
+ It can be used with most modern MIDI synthesisers which support
+ the SF3 format, although early implementations (such as the one
+ from MuseScore before release 2.2) had bugs making the resulting
+ sound bad; instead use fluidr3mono-gm-soundfont for those.
+ .
+ As it comes under the MIT licence, it can be used in most settings,
+ but do remember that waveforms generated using this soundfont are
+ “copies or substantial portions of the” soundfont. It is sufficient
+ to reproduce the licence and copyright notice in any “associated
+ documentation files” provided with your generated waveforms.
+ .
+ The musescore-general-soundfont-small package contains the normal
+ soundfont (as shipped with MuseScore 3.x), lossily SF3 compressed.
+ The musescore-general-soundfont package similarly provides the
+ HQ version of the soundfont (with separate ensembles instruments
+ and other large improvements) as SF3, whereas the SF2 HQ version
+ is packaged as musescore-general-soundfont-lossless for use with
+ synthesisers lacking SF3 support, by audiophiles, and to avoid
+ long MuseScore startup times; however with a large disc footprint.
+ .
+ This package will be installed into /usr/share/sounds/sf3/ which
+ is the standard Debian location for system-wide SF3 soundfonts.

@@ -1,4 +1,51 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/pkg-info.mk
+
+ifeq (,$(filter terse,${DEB_BUILD_OPTIONS}))
+export DH_VERBOSE=1
+export V=1
+export VERBOSE=1
+endif
+
+LC_ALL:=C.UTF-8
+export LC_ALL
+
+S:=sed --posix
+
+execute_after_dh_clean:
+	rm -rf builddir && rm -f MuseScore_General.sf2
+
+icop:=Copyright (c) Frank Wen, Michael Cowgill, S. Christian Collins and others; see ICMT chunk or Debian source package ${DEB_SOURCE} (= ${DEB_VERSION}) for entire terms and the MIT licence
+ieng:=MuseScore_General by S. Christian Collins; based on Fluid (R3) Mono GM by Church Organist; based on Fluid (R3) SoundFont by Frank Wen
+sfbasename:=MuseScore_General_Lite
+sfchangelog:=builddir/changelog.md
+
+override_dh_auto_configure:
+	cat MuseScore_General.sf2.* > MuseScore_General.sf2
+
+override_dh_auto_build:
+	rm -rf builddir
+	mkdir builddir
+	set -- */*_Changelog.md; \
+	    $S 's/\r$$//g' <"$$1" >${sfchangelog}
+	set -- *.[Ss][Ff]2; \
+	    cmt=$$($S '1,/^Licence:$$/d' debian/copyright | $S 1d; echo x); \
+	    xnam=' (MuseScore_General v${DEB_VERSION_UPSTREAM})'; \
+	    python3 debian/riffedit.py "$$1" builddir/tmp.sf2 \
+	    -az 'LIST<INFO>/INAM' '${sfbasename}.sf3'"$$xnam" \
+	    -az 'LIST<INFO>/ICOP' '${icop}' \
+	    -az 'LIST<INFO>/IENG' '${ieng}' \
+	    -az 'LIST<INFO>/ICMT' "$${cmt%x}"
+	sf3convert -S 0 -q 0.8 -a -1 -z \
+	    builddir/tmp.sf2 builddir/${sfbasename}.sf3
+	rm -f builddir/tmp.sf2
+
+override_dh_installchangelogs:
+	dh_installchangelogs ${sfchangelog}
+
+override_dh_builddeb:
+	dh_builddeb -- --no-uniform-compression
+
 %:
 	dh $@

@@ -1,0 +1,12 @@
+# no, thanks
+musescore-general-soundfont-small source: no-dep5-copyright
+
+# upstream uses ever-changing Google Drive links ☹
+musescore-general-soundfont-small source: debian-watch-file-is-missing
+
+# no such information exists
+musescore-general-soundfont-small source: upstream-metadata-missing-bug-tracking
+musescore-general-soundfont-small source: upstream-metadata-missing-repository
+
+# oh really?! what the ever…
+musescore-general-soundfont-small source: cute-field

@@ -1,0 +1,6 @@
+# ships a file we transition to update-alternatives
+musescore-general-soundfont-small: conflicts-with-version musescore-common (<< 2.3.2+dfsg1-1~bpo9)
+
+# otherwise, removing would break the alternatives link group
+musescore-general-soundfont-small: conflicts-with-version fluidr3mono-gm-soundfont (<< 2.315-5~)
+musescore-general-soundfont-small: conflicts-with-version musescore-general-soundfont (<< 0.1.3-1~)

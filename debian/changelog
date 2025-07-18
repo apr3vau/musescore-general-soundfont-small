@@ -1,5 +1,272 @@
-template-repository (1.0-1) unstable; urgency=medium
+musescore-general-soundfont-small (0.2.1-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release
+    - 000:058 Tuba: Extended top of sounding range since the Tuba preset
+      is used for the bugles and euphonium in MuseScore. In doing so, I
+      have also generated new samples ("Tuba B6", "Tuba F6") for a better
+      sound in the upper range. Fixes: https://musescore.org/en/node/314547
+      and https://musescore.org/en/node/324917
+    - 000:090 Polysynth; 017:090 Polysynth Expr.:
+      Tweaked velocity and filter response
+    - 010:115 Metronome; 128:55 Metronome: Added, featuring two pairs of
+      metronome sounds. MuseScore’s metronome sound is not produced by the
+      synth engine and therefore it is not possible to render to an audio
+      file as many have requested (cf. https://musescore.org/en/node/154666
+      and https://musescore.org/en/node/320431). As a workaround, you can
+      create a percussion staff (simplest way is to add “Wood Blocks” to
+      the score) and assign it to the “Metronome” preset in the mixer.
+      See the README for more information on this.
+  * Bump Policy (no change)
+  * Update all other files accordingly
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Thorsten Glaser <tg@mirbsd.de>  Mon, 04 Oct 2021 03:41:28 +0200
+
+musescore-general-soundfont-small (0.2-2) unstable; urgency=high
+
+  * The INAM chunk m̲u̲s̲t̲ contain the string “MuseScore_General”
+    (MuseScore checks this as case-sensitive substring)
+    so expressive patches work
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 12 Jul 2020 16:42:30 +0200
+
+musescore-general-soundfont-small (0.2-1) unstable; urgency=low
+
+  * New upstream release
+  * Merge fluidr3mono-gm-soundfont (2.315-7) packaging changes
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 15 May 2020 00:14:37 +0200
+
+fluidr3mono-gm-soundfont (2.315-7) unstable; urgency=low
+
+  * Enhances: libfluidsynth2
+  * Use debhelper execute_after constructs
+  * Bump Policy (no relevant changes), debhelper
+  * Simplify packaging of many soundfonts like this
+  * Use sed --posix, everywhere
+  * Update year of copyright for packaging
+  * Merge updated templates of maintainer scripts from jupp
+  * Sync packaging with musescore-general-soundfont{,-small}
+  * debian/upstream/metadata: removed repository, which vanished
+  * Improve metadata and description
+  * Update debian/riffedit.py from master copy
+  * Quieten lintian, with review
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 14 May 2020 23:31:36 +0200
+
+musescore-general-soundfont-small (0.1.9-1) unstable; urgency=medium
+
+  * Enhances: libfluidsynth2
+  * Use debhelper execute_after constructs
+  * Bump Policy (no relevant changes)
+  * Simplify packaging of many soundfonts like this
+  * Use sed --posix, everywhere
+  * Update description to not refer to ever-changing MuseScore versions
+  * New upstream version
+  * Update year of copyright for packaging
+  * Merge updated templates of maintainer scripts from jupp
+  * Sync packaging with musescore-general-soundfont
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 06 Feb 2020 22:10:08 +0100
+
+musescore-general-soundfont-small (0.1.8-1) unstable; urgency=medium
+
+  * Merge fluidr3mono-gm-soundfont (2.315-6) packaging improvements
+    and synchronise with musescore-general-soundfont (0.1.8-1)
+  * New upstream version, contains sound fixes
+  * Install upstream changelog without CRLF line endings
+  * Modernise packaging; bump Policy (no change needed)
+  * Enhance musescore3 as well
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Mon, 11 Nov 2019 18:26:12 +0100
+
+fluidr3mono-gm-soundfont (2.315-6) unstable; urgency=medium
+
+  * Modernise packaging from musescore-general-soundfont{,-small}
+    - debhelper 12
+    - Policy 4.4.0, no changes
+  * Provides the new virtual package “sf3-soundfont-gm” and registers
+    itself with priority 30 for /usr/share/sounds/sf3/default-GM.sf3
+    in Debian alternatives following the scheme discussed in #929185
+  * Update package description with explicitly no SND support mentioned
+  * Packaging simplification taken from MagicPoint packaging (by me)
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 02 Aug 2019 23:07:47 +0200
+
+musescore-general-soundfont-small (0.1.6-2) unstable; urgency=high
+
+  * Make musescore-general-soundfont-small Provides the new virtual
+    package “sf3-soundfont-gm” and register itself with priority 50
+    for /usr/share/sounds/sf3/default-GM.sf3 in Debian alternatives
+    following the scheme discussed in #929185
+  * Bump Policy, no changes applicable
+  * Point out SND support in package description
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 02 Aug 2019 22:29:06 +0200
+
+musescore-general-soundfont (0.1.7-2) unstable; urgency=high
+
+  * Make musescore-general-soundfont-lossless Provides two new
+    virtual packages “sf2-soundfont-gm” and “sf3-soundfont-gm”
+    and register itself with priority 70 for the alternatives
+    /usr/share/sounds/sf2/default-GM.sf2 and …/sf3/default-GM.sf3
+    for the new “default soundfont” scheme discussed in #929185
+  • Do the same, with priority 60 and SF3 only, in the package
+    musescore-general-soundfont
+  * Point out SND support in package description
+  * Bump Policy (with no relevant changes)
+  * Let m-g-s-lossless Provides m-g-s (as m-g-s-small does)
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 02 Aug 2019 22:22:19 +0200
+
+musescore-general-soundfont-small (0.1.6-1) unstable; urgency=medium
+
+  * New upstream version, renamed to “MuseScore_General”, from
+    “MuseScore_General_Lite”, we keep the current Debian package
+    names though (making the HQ version the primary alternative
+    but *Gallic shrug* that’s what you get for shuffling stuff
+    around too often, also distro benefitting from package reuse)
+  * Redo all musescore-general-soundfont* binary package descriptions
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Tue, 16 Apr 2019 17:08:50 +0200
+
+musescore-general-soundfont (0.1.7-1) unstable; urgency=medium
+
+  * New upstream version, renamed to “MuseScore_General_HQ”, but
+    we keep the current Debian package names (which makes this the
+    first alternative, while upstream MuseScore bundles the lower
+    quality one, but that’s what you get for shuffling stuff around
+    too often, plus distro benefits of reusing split packages)
+  * Redo all musescore-general-soundfont* binary package descriptions
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Tue, 16 Apr 2019 17:06:34 +0200
+
+musescore-general-soundfont-small (0.1.4-1) unstable; urgency=high
+
+  * New upstream bugfix release
+  * Merge most changes from musescore-general-soundfont (0.1.4-1):
+    - Bump debhelper to 12
+    - Policy 4.3.0 (no changes)
+    - Mention musescore-general-soundfont-lossless in the package
+      description (but do not ship a lossless build of the small
+      soundfont)
+    - Generalise the build target
+  * Ensure four-digit years in copyright metadata
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 24 Jan 2019 20:59:20 +0100
+
+musescore-general-soundfont (0.1.4-1) unstable; urgency=high
+
+  * New upstream bugfix release
+  * Ensure four-digit years in copyright metadata
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 24 Jan 2019 20:55:55 +0100
+
+musescore-general-soundfont (0.1.3-2) unstable; urgency=medium
+
+  * Add musescore-general-soundfont-lossless package, in the least
+    obtrusive way; adjust rules and package description accordingly
+  * Bump Policy 4.3.0.1 (no changes)
+  * Add a(n admittedly trivial) Timidity config for -lossless
+  * Bump debhelper to 12, lintian insists
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sat, 05 Jan 2019 10:35:55 +0100
+
+musescore-general-soundfont-small (0.1.3-1) unstable; urgency=medium
+
+  * Package the tiny memory footprint flavour of the soundfont
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 14 Dec 2018 03:18:11 +0100
+
+musescore-general-soundfont (0.1.3-1) unstable; urgency=medium
+
+  * Migrate to use update-alternatives for handling MuseScore_General.sf3
+  * Update to Policy 4.2.1.5
+    - R³:no
+  * Use system-default compression (Closes: #896131) but retain
+    --no-uniform-compression to make the .deb installable on older
+    distributions for which manual MuseScore backports were made
+  * Use less space during the build
+  * Update Enhances field, from fluidr3mono-gm-soundfont
+  * Use backports-compatible versioning in package relationships
+  * Update package description
+  * Synchronise debian/ between my soundfont packages to reduce delta
+  * Update upstream metadata
+  * Provide musescore-compatible-soundfont to be future-proof
+  * Update lintian overrides
+  * New upstream version; this package still ships the full version
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 14 Dec 2018 03:10:51 +0100
+
+fluidr3mono-gm-soundfont (2.315-5) unstable; urgency=medium
+
+  * Migrate to use update-alternatives for handling MuseScore_General.sf3
+  * Update to Policy 4.2.1.5
+    - R³:no
+  * Use system-default compression (Closes: #896131) but retain
+    --no-uniform-compression to make the .deb installable on older
+    distributions for which manual MuseScore backports were made
+  * Use backports-compatible versioning in package relationships
+  * Update package description
+  * Synchronise debian/ between my soundfont packages to reduce delta
+  * Use less space during the build
+  * Update upstream metadata
+  * Provide musescore-compatible-soundfont to be future-proof
+  * Update lintian overrides
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Fri, 14 Dec 2018 01:14:45 +0100
+
+musescore-general-soundfont (0.1.1-2) unstable; urgency=low
+
+  * Upstream suddenly renamed MS_General to MuseScore_General
+  * Use xz -9e, it’s larger than Fluid so it’s worth it
+  * Override xz-compression-level-too-high (good warning, but
+    this specific case is checked and correct)
+  * Retain the “MIT” licence identifier in ICOP chunk
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 25 Mar 2018 22:21:54 +0200
+
+fluidr3mono-gm-soundfont (2.315-4) unstable; urgency=high
+
+  * Rename MS_General.sf3 symlink to MuseScore_General.sf3
+    since upstream suddenly decided to change it
+  * Put the “MIT” licence identifier in ICOP chunk
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 25 Mar 2018 22:25:07 +0200
+
+musescore-general-soundfont (0.1.1-1) unstable; urgency=low
+
+  * Start off as a copy of fluidr3mono-gm-soundfont
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 25 Mar 2018 20:47:47 +0200
+
+fluidr3mono-gm-soundfont (2.315-3) unstable; urgency=high
+
+  * Use compression keeping the .deb installable on trusty
+  * Mark as Multi-Arch: foreign, prompted by piuparts
+  * Switch to sf3convert (new upstream-requested name)
+  * Add option to keep building reproducibly
+  * Update Enhances field
+  * Use quality settings recommended by S. Christian Collins
+  * Compress the .deb with xz -8e saving space on the mirrors
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Sun, 25 Mar 2018 20:44:33 +0200
+
+fluidr3mono-gm-soundfont (2.315-2) unstable; urgency=low
+
+  * Drop the MuseScore version number from the package description;
+    it was ever-changing, but we use MuseScore’s upstream source now
+  * Sync original Fluid (R3) GM licence terms
+  * Embed full licence into the soundfont, for propagation
+  * Adjust package description as MuseScore will be switching to
+    another soundfont (based off this one) with an upcoming release
+  * Add debian/upstream/metadata, requested by lintian
+  * Publish packaging in VCS
+  * Add MS_General.sf3 symlink (compatibility with upcoming MuseScore)
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Thu, 15 Mar 2018 02:28:43 +0100
+
+fluidr3mono-gm-soundfont (2.315-1) unstable; urgency=high
+
+  * Initial Release
+
+ -- Thorsten Glaser <tg@mirbsd.de>  Mon, 05 Mar 2018 02:54:25 +0100
